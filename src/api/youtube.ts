@@ -16,7 +16,7 @@ export const fetchVideosByQuery = async (query: string) => {
     });
     return res.data.items;
   } catch (e) {
-    console.error("YT API error:", e);
+    console.error("YT API errorr:", e);
     return [];
   }
 };
