@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/app-icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
       "image": "./assets/app-icon.png",
       "resizeMode": "contain",
@@ -21,11 +21,12 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.anonymous.expo_widlarz"
     },
     "web": {
       "favicon": "./assets/app-icon.png"
     },
-    "plugins": ["expo-font"]
+    "plugins": ["expo-font", "react-native-video"]
   }
 }
