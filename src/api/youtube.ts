@@ -12,7 +12,7 @@ const mockVideos = [
       channelTitle: "Kanal 1",
       publishedAt: "2022-08-12",
       thumbnails: {
-        medium: { url: "https://via.placeholder.com/320x180" },
+        medium: { url: "https://placehold.co/600x400" },
       },
     },
   },
@@ -24,7 +24,7 @@ const mockVideos = [
       channelTitle: "Kanal 2",
       publishedAt: "2022-07-10T12",
       thumbnails: {
-        medium: { url: "https://via.placeholder.com/320x180" },
+        medium: { url: "https://placehold.co/600x400" },
       },
     },
   },
