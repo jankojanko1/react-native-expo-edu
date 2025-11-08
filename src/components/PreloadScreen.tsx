@@ -6,7 +6,8 @@ import {
   Linking,
   StyleSheet,
 } from "react-native";
-import { SvgUri } from "react-native-svg";
+import AppIcon from "../../assets/app-icon.svg";
+import Logo from "../../assets/logo.svg";
 
 interface Props {
   onContinue: () => void;
@@ -16,16 +17,8 @@ const PreloadScreen: React.FC<Props> = ({ onContinue }) => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <SvgUri
-          width="100"
-          height="100"
-          uri={require("../../assets/logo.svg")}
-        />
-        <SvgUri
-          width="80"
-          height="80"
-          uri={require("../../assets/app-icon.svg")}
-        />
+        <Logo />
+        <AppIcon width={100} height={100} />
       </View>
 
       <Text style={styles.title}>Welcome</Text>
