@@ -7,7 +7,6 @@ import type { YouTubeSearchItem } from "@/types/types";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import type { RootStackParamList } from "@/navigation/AppNavigator";
-import PreloadScreen from "@/components/PreloadScreen";
 
 type Nav = NativeStackNavigationProp<RootStackParamList, "Home">;
 
@@ -16,7 +15,6 @@ const CATEGORIES = ["React Native", "React", "TypeScript", "JavaScript"];
 export default function HomeScreen() {
   const nav = useNavigation<Nav>();
   const [data, setData] = useState<Record<string, YouTubeSearchItem[]>>({});
-  const [showWelcome, setShowWelcome] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -32,9 +30,8 @@ export default function HomeScreen() {
 
   return (
     <>
-      <ScrollView contentContainerStyle={{ padding: 16 }}>
+      <ScrollView contentContainerStyle={{}}>
         <SearchBar onSearch={(q) => nav.navigate("Search", { query: q })} />
-        <Text style={styles.title}>Kategorie</Text>
         {CATEGORIES.map((cat) => (
           <View key={cat}>
             <CategoryList category={cat} videos={data[cat]} />
@@ -46,14 +43,11 @@ export default function HomeScreen() {
           </View>
         ))}
       </ScrollView>
-      {showWelcome && (
-        <PreloadScreen onContinue={() => setShowWelcome(false)} />
-      )}
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  title: { fontSize: 22, fontWeight: "800", marginBottom: 12 },
-  showMore: { color: "#007AFF", marginVertical: 8, fontWeight: "600" },
-});
+// const styles = StyleSheet.create({
+//   title: { fontSize: 22, fontWeight: "800", marginBottom: 12 },
+//   showMore: { color: "#007AFF", marginVertical: 8, fontWeight: "600" },
+// });

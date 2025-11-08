@@ -4,7 +4,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "@/navigation/AppNavigator";
 import SearchBar from "@/components/SearchBar";
 import { fetchVideosByQuery } from "@/api/youtube";
-import VideoCard from "@/components/VideoCard";
+import VideoCard from "@/components/VideoCardSearch";
 import type { YouTubeSearchItem } from "@/types/types";
 
 type SearchRoute = RouteProp<RootStackParamList, "Search">;
@@ -33,6 +33,22 @@ export default function SearchScreen() {
   return (
     <View style={styles.container}>
       <SearchBar initial={query} onSearch={doSearch} />
+      <View
+        style={{
+          marginLeft: 24,
+          flexDirection: "row",
+          alignItems: "center",
+          marginBottom: 24,
+        }}
+      >
+        <Text style={{ color: "#000", fontSize: 10 }}>
+          {videos.length} results found for
+        </Text>
+        <Text style={{ color: "#000", fontWeight: 600, fontSize: 10 }}>
+          {" "}
+          "{query}"
+        </Text>
+      </View>
       {videos.length === 0 ? (
         <Text style={styles.empty}>Brak wyników</Text>
       ) : (
@@ -44,6 +60,7 @@ export default function SearchScreen() {
               video={{
                 id: item.id.videoId,
                 title: item.snippet.title,
+                data: item.snippet.publishedAt,
                 // thumbnail: item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default?.url,
                 thumbnail:
                   item.snippet.thumbnails.medium?.url ??
@@ -59,6 +76,6 @@ export default function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16 },
-  empty: { marginTop: 20, textAlign: "center", color: "#666" },
+  container: { flex: 1 },
+  empty: { marginTop: 48, textAlign: "center", color: "#666" },
 });

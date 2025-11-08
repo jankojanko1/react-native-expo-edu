@@ -13,6 +13,9 @@ import type { RootStackParamList } from "@/navigation/AppNavigator";
 import { fetchVideoDetails } from "@/api/youtube";
 import type { YouTubeVideoDetail } from "@/types/types";
 
+import PersonIcon from "../../assets/icons/person-icon.svg";
+import { theme } from "@/theme/theme";
+
 type Route = RouteProp<RootStackParamList, "VideoDetail">;
 
 export default function VideoDetailScreen() {
@@ -32,7 +35,7 @@ export default function VideoDetailScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={{ width: "100%", height: 220, backgroundColor: "#000" }}>
+      <View style={{ width: "100%", height: 230, backgroundColor: "#000" }}>
         <Video
           source={{
             uri: "https://bitmovin-a.akamaihd.net/content/sintel/hls/playlist.m3u8",
@@ -49,10 +52,30 @@ export default function VideoDetailScreen() {
         ) : (
           <>
             <Text style={styles.title}>{video?.snippet?.title}</Text>
-            <Text style={styles.channel}>{video?.snippet?.channelTitle}</Text>
-            <Text style={styles.description}>
-              {video?.snippet?.description}
-            </Text>
+
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginBottom: 16,
+              }}
+            >
+              <View style={styles.personIcon}>
+                <PersonIcon width={24} height={24} color="#FFF" />
+              </View>
+              <Text style={styles.channel}>{video?.snippet?.channelTitle}</Text>
+            </View>
+
+            <View style={styles.gapInfo}></View>
+
+            <View style={styles.descriptionAddon}>
+              <Text style={{ fontWeight: 600, fontSize: 10, color: "#000" }}>
+                Description
+              </Text>
+              <Text style={styles.description}>
+                {video?.snippet?.description}
+              </Text>
+            </View>
           </>
         )}
       </View>
@@ -62,8 +85,20 @@ export default function VideoDetailScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  info: { padding: 16 },
-  title: { fontSize: 18, fontWeight: "700", marginBottom: 8 },
-  channel: { color: "#666", marginBottom: 10 },
-  description: { color: "#333" },
+  personIcon: {
+    width: 48,
+    height: 48,
+    position: "relative",
+    backgroundColor: theme.themePrimary,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 32,
+    marginRight: 8,
+  },
+  gapInfo: { width: "100%", height: 2, backgroundColor: theme.themePrimary },
+  descriptionAddon: { marginTop: 16 },
+  info: { padding: 24 },
+  title: { color: "#000", fontSize: 18, fontWeight: "600", marginVertical: 8 },
+  channel: { color: "#000" },
+  description: { color: "#000", fontSize: 12, fontWeight: 400, marginTop: 4 },
 });
