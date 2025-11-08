@@ -12,41 +12,50 @@ import IconSearch from "../../assets/icons/search-icon.svg";
 import { theme } from "@/theme/theme";
 
 export type RootStackParamList = {
-  MainTabs: undefined;
+  Home: undefined;
+  Search: { query?: string } | undefined;
   VideoDetail: { videoId: string };
 };
 
-const RootStack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
-function MainTabs() {
+function HomeStack() {
   return (
-    <Tab.Navigator
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarShowLabel: true,
-        tabBarStyle: {
-          backgroundColor: theme.theme,
-          borderTopWidth: 0,
-          height: 72,
-          paddingBottom: 8,
-        },
-        tabBarIconStyle: { marginTop: 4 },
-        tabBarLabelStyle: { fontSize: 12, marginTop: 0 },
-        tabBarIcon: ({ focused }) => {
-          const color = focused ? theme.themePrimary : theme.themeSecondary;
-          if (route.name === "Home")
-            return <IconHome width={32} height={32} color={color} />;
-          if (route.name === "Search")
-            return <IconSearch width={32} height={32} color={color} />;
-        },
-        tabBarActiveTintColor: theme.themePrimary,
-        tabBarInactiveTintColor: theme.themeSecondary,
-      })}
-    >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-    </Tab.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ title: "Home" }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ title: "Search" }}
+      />
+      <Stack.Screen
+        name="VideoDetail"
+        component={VideoDetailScreen}
+        options={{ title: "Video" }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function SearchStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen
+        name="Search"
+        component={SearchScreen}
+        options={{ title: "Search" }}
+      />
+      <Stack.Screen
+        name="VideoDetail"
+        component={VideoDetailScreen}
+        options={{ title: "Video" }}
+      />
+    </Stack.Navigator>
   );
 }
 
@@ -59,10 +68,46 @@ export default function AppNavigator() {
 
   return (
     <NavigationContainer>
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        <RootStack.Screen name="MainTabs" component={MainTabs} />
-        <RootStack.Screen name="VideoDetail" component={VideoDetailScreen} />
-      </RootStack.Navigator>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          headerShown: false,
+          tabBarShowLabel: true,
+          tabBarStyle: {
+            backgroundColor: "#000",
+            borderTopWidth: 0,
+            height: 70,
+            paddingBottom: 8,
+          },
+          tabBarLabelStyle: {
+            fontSize: 12,
+            marginTop: -4,
+          },
+          tabBarIcon: ({ focused }) => {
+            const color = focused ? theme.themePrimary : theme.themeSecondary;
+
+            if (route.name === "Home") {
+              return <IconHome width={24} height={24} color={color} />;
+            }
+            if (route.name === "Search") {
+              return <IconSearch width={24} height={24} color={color} />;
+            }
+            return null;
+          },
+          tabBarActiveTintColor: theme.themePrimary,
+          tabBarInactiveTintColor: theme.themeSecondary,
+        })}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeStack}
+          options={{ title: "Home" }}
+        />
+        <Tab.Screen
+          name="Search"
+          component={SearchStack}
+          options={{ title: "Search" }}
+        />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
