@@ -7,6 +7,10 @@ import {
   StyleSheet,
 } from "react-native";
 
+import SearchIcon from "../../assets/icons/search-icon.svg";
+import IconSettings from "../../assets/icons/settings-icon.svg";
+import { theme } from "@/theme/theme";
+
 type Props = {
   initial?: string;
   onSearch: (query: string) => void;
@@ -16,33 +20,47 @@ export default function SearchBar({ initial = "", onSearch }: Props) {
   const [query, setQuery] = useState(initial);
   return (
     <View style={styles.container}>
-      <TextInput
-        value={query}
-        onChangeText={setQuery}
-        placeholder="Szukaj wideo..."
-        onSubmitEditing={() => onSearch(query)}
-        style={styles.input}
-      />
-      <TouchableOpacity style={styles.button} onPress={() => onSearch(query)}>
-        <Text style={styles.buttonText}>Szukaj</Text>
+      <View style={{ position: "relative", flex: 1, height: 40 }}>
+        <TextInput
+          value={query}
+          onChangeText={setQuery}
+          placeholder="Search videos"
+          onSubmitEditing={() => onSearch(query)}
+          style={styles.input}
+        />
+        <SearchIcon
+          width={24}
+          height={24}
+          color="#000"
+          style={{ position: "absolute", zIndex: 10, left: 8, top: 8 }}
+        />
+      </View>
+
+      <TouchableOpacity style={styles.button}>
+        <IconSettings />
       </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flexDirection: "row", marginBottom: 12 },
+  container: {
+    flexDirection: "row",
+    // marginBottom: 12,
+    marginTop: 64,
+    padding: 24,
+  },
   input: {
     flex: 1,
-    borderWidth: 1,
-    borderColor: "#DDD",
-    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: theme.themePrimary,
+    borderRadius: 16,
     paddingHorizontal: 10,
     height: 40,
+    paddingLeft: 38,
   },
   button: {
     marginLeft: 8,
-    backgroundColor: "#007AFF",
     paddingHorizontal: 12,
     borderRadius: 8,
     justifyContent: "center",

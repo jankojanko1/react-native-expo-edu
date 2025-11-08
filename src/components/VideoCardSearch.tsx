@@ -29,11 +29,11 @@ export default function VideoCard({
 }
 
 const styles = StyleSheet.create({
-  card: { width: 180, marginRight: 24 },
-  thumb: { height: 120, width: "100%", borderRadius: 8 },
+  card: { width: "100%", paddingHorizontal: 24 },
+  thumb: { height: 200, width: "100%", borderRadius: 8 },
   title: { marginTop: 8, fontWeight: "500", fontSize: 12 },
   secTitle: {
-    marginTop: 8,
+    marginBottom: 24,
     fontWeight: "400",
     fontSize: 10,
     textAlign: "right",
