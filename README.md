@@ -41,7 +41,7 @@ React Native Video Player: [![react-native-video](https://img.shields.io/badge/r
 ```bash
   yarn install
   # or
-  npx expo install
+  npm install
 ```
 
 2. Set up Environment Variables
