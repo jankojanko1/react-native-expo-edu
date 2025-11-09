@@ -14,7 +14,7 @@ import { fetchVideoDetails } from "@/api/youtube";
 import type { YouTubeVideoDetail } from "@/types/types";
 
 import PersonIcon from "../../assets/icons/person-icon.svg";
-import { theme } from "@/theme/theme";
+import { theme, GlobalFont } from "@/theme/theme";
 
 type Route = RouteProp<RootStackParamList, "VideoDetail">;
 
@@ -51,7 +51,9 @@ export default function VideoDetailScreen() {
           <ActivityIndicator />
         ) : (
           <>
-            <Text style={styles.title}>{video?.snippet?.title}</Text>
+            <Text style={[GlobalFont.CustomFont600, styles.title]}>
+              {video?.snippet?.title}
+            </Text>
 
             <View
               style={{
@@ -63,16 +65,23 @@ export default function VideoDetailScreen() {
               <View style={styles.personIcon}>
                 <PersonIcon width={24} height={24} color="#FFF" />
               </View>
-              <Text style={styles.channel}>{video?.snippet?.channelTitle}</Text>
+              <Text style={[GlobalFont.CustomFont, styles.channel]}>
+                {video?.snippet?.channelTitle}
+              </Text>
             </View>
 
             <View style={styles.gapInfo}></View>
 
             <View style={styles.descriptionAddon}>
-              <Text style={{ fontWeight: 600, fontSize: 10, color: "#000" }}>
+              <Text
+                style={[
+                  GlobalFont.CustomFont600,
+                  { fontWeight: 600, fontSize: 10, color: "#000" },
+                ]}
+              >
                 Description
               </Text>
-              <Text style={styles.description}>
+              <Text style={[GlobalFont.CustomFont, styles.description]}>
                 {video?.snippet?.description}
               </Text>
             </View>

@@ -9,7 +9,7 @@ import {
 
 import SearchIcon from "../../assets/icons/search-icon.svg";
 import IconSettings from "../../assets/icons/settings-icon.svg";
-import { theme } from "@/theme/theme";
+import { theme, GlobalFont } from "@/theme/theme";
 
 type Props = {
   initial?: string;
@@ -26,7 +26,7 @@ export default function SearchBar({ initial = "", onSearch }: Props) {
           onChangeText={setQuery}
           placeholder="Search videos"
           onSubmitEditing={() => onSearch(query)}
-          style={styles.input}
+          style={[GlobalFont.CustomFont, styles.input]}
         />
         <SearchIcon
           width={24}

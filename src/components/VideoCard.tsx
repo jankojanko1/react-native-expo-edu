@@ -3,6 +3,7 @@ import { Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "@/navigation/AppNavigator";
+import { GlobalFont } from "@/theme/theme";
 
 type NavProp = NativeStackNavigationProp<RootStackParamList, "VideoDetail">;
 
@@ -18,10 +19,10 @@ export default function VideoCard({
       onPress={() => nav.navigate("VideoDetail", { videoId: video.id })}
     >
       <Image source={{ uri: video.thumbnail }} style={styles.thumb} />
-      <Text numberOfLines={2} style={styles.title}>
+      <Text numberOfLines={2} style={[GlobalFont.CustomFont, styles.title]}>
         {video.title}
       </Text>
-      <Text numberOfLines={2} style={styles.secTitle}>
+      <Text numberOfLines={2} style={[styles.secTitle, GlobalFont.CustomFont]}>
         {formatPublishedDate(video.data)}
       </Text>
     </TouchableOpacity>

@@ -6,6 +6,7 @@ import SearchBar from "@/components/SearchBar";
 import { fetchVideosByQuery } from "@/api/youtube";
 import VideoCard from "@/components/VideoCardSearch";
 import type { YouTubeSearchItem } from "@/types/types";
+import { GlobalFont } from "@/theme/theme";
 
 type SearchRoute = RouteProp<RootStackParamList, "Search">;
 
@@ -41,16 +42,21 @@ export default function SearchScreen() {
           marginBottom: 24,
         }}
       >
-        <Text style={{ color: "#000", fontSize: 10 }}>
+        <Text style={[styles.textLeng, GlobalFont.CustomFont]}>
           {videos.length} results found for
         </Text>
-        <Text style={{ color: "#000", fontWeight: 600, fontSize: 10 }}>
+        <Text
+          style={[
+            GlobalFont.CustomFont,
+            { color: "#000", fontWeight: 600, fontSize: 10 },
+          ]}
+        >
           {" "}
           "{query}"
         </Text>
       </View>
       {videos.length === 0 ? (
-        <Text style={styles.empty}>Brak wyników</Text>
+        <Text style={[GlobalFont.CustomFont, styles.empty]}>Brak wyników</Text>
       ) : (
         <FlatList
           data={videos}
@@ -77,5 +83,6 @@ export default function SearchScreen() {
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  textLeng: { color: "#000", fontSize: 10 },
   empty: { marginTop: 48, textAlign: "center", color: "#666" },
 });

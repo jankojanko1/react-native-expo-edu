@@ -11,7 +11,7 @@ import type { YouTubeSearchItem } from "../types/types";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import type { RootStackParamList } from "@/navigation/AppNavigator";
-import { theme } from "@/theme/theme";
+import { theme, GlobalFont } from "@/theme/theme";
 
 type Nav = NativeStackNavigationProp<RootStackParamList, "Home">;
 
@@ -27,11 +27,13 @@ export default function CategoryList({
   return (
     <View style={styles.container}>
       <View style={styles.title_head}>
-        <Text style={styles.header}>{category}</Text>
+        <Text style={[GlobalFont.CustomFont600, styles.header]}>
+          {category}
+        </Text>
         <TouchableOpacity
           onPress={() => nav.navigate("Search", { query: category })}
         >
-          <Text>Show more</Text>
+          <Text style={GlobalFont.CustomFont}>Show more</Text>
         </TouchableOpacity>
       </View>
       <FlatList

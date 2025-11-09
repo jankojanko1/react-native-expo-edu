@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import AppIcon from "../../assets/app-icon.svg";
 import Logo from "../../assets/logo.svg";
-import { theme } from "@/theme/theme";
+import { theme, GlobalFont } from "@/theme/theme";
 
 interface Props {
   onContinue: () => void;
@@ -25,16 +25,20 @@ const PreloadScreen: React.FC<Props> = ({ onContinue }) => {
       </View>
 
       <View style={styles.loginContainer}>
-        <Text style={styles.title}>
+        <Text style={[GlobalFont.CustomFont, styles.title]}>
           Welcome to the best Youtube-based learning application.
         </Text>
 
         <TouchableOpacity style={styles.button} onPress={onContinue}>
-          <Text style={styles.buttonText}>Log in as guest</Text>
+          <Text style={[GlobalFont.CustomFont, styles.buttonText]}>
+            Log in as guest
+          </Text>
         </TouchableOpacity>
 
         <View style={styles.linksContainer}>
-          <Text style={styles.separator}>By continuing you agree with</Text>
+          <Text style={[GlobalFont.CustomFont, styles.separator]}>
+            By continuing you agree with
+          </Text>
           <View style={styles.linkFlex}>
             <TouchableOpacity
               onPress={() => Linking.openURL("https://example.com/terms")}
